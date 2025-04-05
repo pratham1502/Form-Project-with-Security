@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Home Page</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+
+<style>
+
+/* Basic styling for the navbar */
+/* Basic styling for the navbar */
+nav {
+    background-color: #ff9f99;
+    overflow: hidden;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 20px; /* Padding for spacing */
+}
+
+/* Flex container for left and right sections */
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+/* Left side of the navbar (Profile, Logout, Login, Register) */
+.left-nav {
+    flex: 1;
+    justify-content: flex-start; /* Align items to the left */
+}
+
+.left-nav li {
+    margin-right: 20px;
+}
+
+.left-nav li a {
+    color: white;
+    text-align: center;
+    padding: 14px 20px;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.left-nav li a:hover {
+    background-color: #ddd;
+    color: black;
+    padding: 10px 20px;
+}
+
+/* Right side of the navbar (Home, About) */
+.right-nav {
+    flex: 1;
+    justify-content: flex-end; /* Align items to the right */
+}
+
+.right-nav li {
+    margin-left: 20px;
+}
+
+.right-nav li a {
+    color: white;
+    text-align: center;
+    padding: 10px 40px;
+    text-decoration: none;
+    font-weight: bold;
+    margin:10px;
+    
+}
+
+.right-nav li a:hover {
+    background-color: #ddd;
+    color: black;
+    
+}
+
+/* Add some padding to the body content to prevent overlap with the navbar */
+body {
+    padding-top: 70px; /* Adjust the value to match the height of your navbar */
+}
+
+/* Optional: Style for the welcome message and dashboard */
+.dashboard {
+    padding: 20px;
+}
+
+.dashboard_title {
+    font-size: 2rem;
+}
+
+.dashboard_user_name {
+    font-size: 1.5rem;
+}
+
+/* Optional: Style for the span-text section */
+.span-text {
+    padding: 20px;
+}
+
+.profile-card {
+            width: 300px;
+            padding: 20px;
+            border-radius: 8px;
+            background-color: #ff9f99;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: left;
+            margin-top: 40px;
+            margin-left: auto;
+            margin-right: auto;
+            display: none; /* Initially hidden */
+            float:right;
+</style>
+
+	 
+	<h1><span th:text="${#authenticted}"></span></h1>
+
+
+    <nav>
+       <!--  Left side of the navbar -->
+        <ul class="left-nav">
+            	<li>
+               <!--  <a href="/profile" th:href="@{/profile}">Profile</a> -->
+                </li>
+                
+            <li>
+            <a href="/" th:href="@{/home}">Home</a>
+            </li>
+            
+            <li><a href="/about" th:href="@{/about}">About</a></li>
+
+
+           
+            <li>
+                <a href="/register" th:href="@{/register}">Register</a>
+            </li>
+        </ul>
+
+        <!-- Right side of the navbar (Home) -->
+        <ul class="right-nav">
+           <li>
+           		<a href="javascript:void(0);" id="profile-link">Profile</a>
+                <a href="/logout" th:href="@{/logout}">Logout</a>                
+                
+            </li>
+        
+            
+            
+        </ul>
+    </nav>
+   <div class="profile-card" id="profile-card">
+        <!-- <img th:src="@{${user.profileImage}}" alt="Profile Picture"> -->
+        <!-- --<h2 th:text=>John Doe</h2>
+        <p>Email: <span th:text=>johndoe@example.com</span></p>
+        <p>Member Since: <span th:text=>January 2021</span></p> -->
+        <p>FullName: <span th:text="${user.fullname}">johndoe@example.com</span></p>
+        <p>Username: <span th:text="${user.username}"></span></p>        
+        <p>Email</p>
+        <p>Member Since</p>
+        <button>Edit Profile</button>
+    </div>
+<script>
+        // JavaScript to toggle the profile card visibility
+        document.getElementById("profile-link").addEventListener("click", function() {
+            var profileCard = document.getElementById("profile-card");
+            if (profileCard.style.display === "none" || profileCard.style.display === "") {
+                profileCard.style.display = "block"; // Show the profile card
+            } else {
+                profileCard.style.display = "none"; // Hide the profile card
+            }
+        });
+    </script>
+
+
+</body>
+</html>
+
+
+
+
+
+
+
